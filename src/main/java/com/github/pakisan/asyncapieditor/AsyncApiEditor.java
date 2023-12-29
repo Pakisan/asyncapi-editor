@@ -21,6 +21,7 @@ public class AsyncApiEditor extends Application {
     }
 
     public static void main(String[] args) {
+        Application.setUserAgentStylesheet("cupertino-dark.css");
         launch();
     }
 
