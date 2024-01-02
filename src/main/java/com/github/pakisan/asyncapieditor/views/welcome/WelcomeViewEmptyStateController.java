@@ -1,5 +1,6 @@
-package com.github.pakisan.asyncapieditor;
+package com.github.pakisan.asyncapieditor.views.welcome;
 
+import com.github.pakisan.asyncapieditor.ViewsRouter;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

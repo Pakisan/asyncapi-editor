@@ -4,5 +4,13 @@ module com.github.pakisan.asyncapieditor {
 
 
     opens com.github.pakisan.asyncapieditor to javafx.fxml;
+    opens com.github.pakisan.asyncapieditor.views.modals.createnewspecification to javafx.fxml;
+    opens com.github.pakisan.asyncapieditor.views.welcome to javafx.fxml;
+    opens com.github.pakisan.asyncapieditor.v3.views.editor to javafx.fxml;
+
     exports com.github.pakisan.asyncapieditor;
+    exports com.github.pakisan.asyncapieditor.v3.views.editor;
+    exports com.github.pakisan.asyncapieditor.views.welcome;
+    exports com.github.pakisan.asyncapieditor.views.modals.createnewspecification;
+    exports com.github.pakisan.asyncapieditor.views.modals.createnewspecification.dto;
 }

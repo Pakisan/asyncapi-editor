@@ -11,6 +11,7 @@ public class AsyncApiEditor extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        ViewsRouter.init(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(AsyncApiEditor.class.getResource("welcome-view_empty-state.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 802, 651);

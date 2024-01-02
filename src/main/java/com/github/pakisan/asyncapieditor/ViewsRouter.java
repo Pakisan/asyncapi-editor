@@ -1,5 +1,6 @@
 package com.github.pakisan.asyncapieditor;
 
+import com.github.pakisan.asyncapieditor.views.modals.createnewspecification.dto.CreateNewSpecification;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,15 +11,21 @@ import java.io.IOException;
 
 public final class ViewsRouter {
 
-    public static void asyncApiEditorView(Parent parent) throws IOException {
-        var fxmlLoader = new FXMLLoader(WelcomeViewEmptyStateController.class.getResource("asyncapi-editor-view.fxml"));
+    private static Stage root;
 
-        var scene = parent.getScene();
-        scene.setRoot(fxmlLoader.load());
+    public static void init(Stage stage) {
+        root = stage;
+    }
+
+    public static void asyncApiEditorView(CreateNewSpecification createNewSpecification) throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("asyncapi-editor-view.fxml"));
+
+        root.setScene(new Scene(fxmlLoader.load(), 802, 651));
+        root.setTitle(createNewSpecification.specificationName());
     }
 
     public static void createNewSpecificationModal(Parent parent) throws IOException {
-        var fxmlLoader = new FXMLLoader(WelcomeViewEmptyStateController.class.getResource("create-new-specification-view.fxml"));
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("create-new-specification-view.fxml"));
 
         var stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));

@@ -15,7 +15,9 @@
 
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.github.pakisan.asyncapieditor.views.modals.createnewspecification.CreateNewSpecificationViewController"
+>
    <padding>
       <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
    </padding>
@@ -34,7 +36,7 @@
             <Font name="System Bold" size="13.0"/>
          </font>
       </Label>
-      <TextField promptText="Enter the new API's name"/>
+      <TextField fx:id="specificationName" promptText="Enter the new API's name"/>
    </HBox>
    <HBox layoutX="18.0" layoutY="50.0" spacing="10.0">
       <padding>
@@ -45,7 +47,7 @@
             <Font name="System Bold" size="13.0"/>
          </font>
       </Label>
-      <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Type a short description of the API"
+      <TextArea fx:id="specificationDescription" prefHeight="200.0" prefWidth="200.0" promptText="Type a short description of the API"
                 wrapText="true"/>
    </HBox>
    <HBox alignment="CENTER_LEFT" layoutX="18.0" layoutY="50.0" spacing="10.0">
@@ -57,7 +59,7 @@
             <Font name="System Bold" size="13.0"/>
          </font>
       </Label>
-      <ChoiceBox prefWidth="150.0"/>
+      <ChoiceBox fx:id="specificationVersion" prefWidth="150.0"/>
    </HBox>
    <HBox alignment="CENTER_LEFT" layoutX="18.0" layoutY="292.0" spacing="10.0">
       <padding>
@@ -68,12 +70,12 @@
             <Font name="System Bold" size="13.0"/>
          </font>
       </Label>
-      <ChoiceBox prefWidth="150.0"/>
+      <ChoiceBox fx:id="specificationTemplate" prefWidth="150.0" disable="true"/>
    </HBox>
    <ButtonBar prefHeight="40.0" prefWidth="200.0">
       <buttons>
-         <Button mnemonicParsing="false" text="Cancel"/>
-         <Button layoutX="140.0" layoutY="16.0" mnemonicParsing="false" text="Create"/>
+         <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel" onAction="#cancelButtonOnAction"/>
+         <Button fx:id="createButton" layoutX="140.0" layoutY="16.0" mnemonicParsing="false" text="Create" onAction="#createButtonOnAction"/>
       </buttons>
    </ButtonBar>
 </VBox>
