@@ -1,5 +1,6 @@
 package com.github.pakisan.asyncapieditor;
 
+import com.github.pakisan.asyncapieditor.v3.views.editor.AsyncApiEditorViewController;
 import com.github.pakisan.asyncapieditor.views.modals.createnewspecification.dto.CreateNewSpecification;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
