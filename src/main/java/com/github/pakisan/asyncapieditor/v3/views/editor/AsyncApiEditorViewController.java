@@ -3,6 +3,7 @@ package com.github.pakisan.asyncapieditor.v3.views.editor;
 import com.asyncapi.v3._0_0.model.AsyncAPI;
 import com.github.pakisan.asyncapieditor.ViewsRouter;
 import com.github.pakisan.asyncapieditor.v3.SpecificationStructureProvider;
+import com.github.pakisan.asyncapieditor.v3.components.ContactComponentController;
 import com.github.pakisan.asyncapieditor.v3.components.InfoComponentController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,7 +64,7 @@ public class AsyncApiEditorViewController {
                     if ("Info".equalsIgnoreCase(((Text) target).getText())) {
                         renderInfoEditor();
                     } else if ("Contact".equalsIgnoreCase(((Text) target).getText())) {
-                        loadEditor("/ui/v3/components/contact-component.fxml");
+                        renderContactEditor();
                     } else if ("License".equalsIgnoreCase(((Text) target).getText())) {
                         loadEditor("/ui/v3/components/license-component.fxml");
                     } else if ("Tags".equalsIgnoreCase(((Text) target).getText())) {
@@ -81,6 +82,16 @@ public class AsyncApiEditorViewController {
         Parent infoComponent = fxmlLoader.load();
         InfoComponentController infoComponentController = fxmlLoader.getController();
         infoComponentController.bindInfo(specification.getInfo());
+
+        specificationEditor.getChildren().clear();
+        specificationEditor.getChildren().add(infoComponent);
+    }
+
+    private void renderContactEditor() throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/contact-component.fxml"));
+        Parent infoComponent = fxmlLoader.load();
+        ContactComponentController contactComponentController = fxmlLoader.getController();
+        contactComponentController.bindContact(specification.getInfo().getContact());
 
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(infoComponent);
