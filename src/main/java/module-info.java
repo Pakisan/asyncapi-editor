@@ -3,6 +3,7 @@ module com.github.pakisan.asyncapieditor {
     requires javafx.fxml;
     requires com.asyncapi;
     requires org.jetbrains.annotations;
+    requires atlantafx.base;
 
     opens com.github.pakisan.asyncapieditor to javafx.fxml;
     opens com.github.pakisan.asyncapieditor.views.modals.createnewspecification to javafx.fxml;
