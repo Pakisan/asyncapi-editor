@@ -1,6 +1,7 @@
 package com.github.pakisan.asyncapieditor.v3.views.editor;
 
 import com.asyncapi.v3._0_0.model.AsyncAPI;
+import com.asyncapi.v3._0_0.model.info.Contact;
 import com.asyncapi.v3._0_0.model.info.License;
 import com.github.pakisan.asyncapieditor.ViewsRouter;
 import com.github.pakisan.asyncapieditor.v3.SpecificationStructureProvider;
@@ -93,6 +94,10 @@ public class AsyncApiEditorViewController {
         var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/contact-component.fxml"));
         Parent infoComponent = fxmlLoader.load();
         ContactComponentController contactComponentController = fxmlLoader.getController();
+
+        if (specification.getInfo().getContact() == null) {
+            specification.getInfo().setContact(new Contact());
+        }
         contactComponentController.bindContact(specification.getInfo().getContact());
 
         specificationEditor.getChildren().clear();
