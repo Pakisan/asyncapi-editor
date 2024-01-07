@@ -1,5 +1,7 @@
 package com.github.pakisan.asyncapieditor;
 
+import com.asyncapi.v3._0_0.model.AsyncAPI;
+import com.asyncapi.v3._0_0.model.info.Info;
 import com.github.pakisan.asyncapieditor.v3.views.editor.AsyncApiEditorViewController;
 import com.github.pakisan.asyncapieditor.views.modals.createnewspecification.dto.CreateNewSpecification;
 import javafx.fxml.FXMLLoader;
@@ -20,13 +22,24 @@ public final class ViewsRouter {
 
     public static void asyncApiEditorView(CreateNewSpecification createNewSpecification) throws IOException {
         var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("asyncapi-editor-view.fxml"));
+        Parent asyncApiEditorView = fxmlLoader.load();
+        AsyncApiEditorViewController asyncApiEditorViewController = fxmlLoader.getController();
 
-        root.setScene(new Scene(fxmlLoader.load(), 802, 651));
+        var asyncApi = new AsyncAPI();
+        asyncApi.setInfo(
+                Info.builder()
+                        .title(createNewSpecification.specificationName())
+                        .description(createNewSpecification.specificationDescription())
+                        .build()
+        );
+        asyncApiEditorViewController.bindSpecification(asyncApi);
+
+        root.setScene(new Scene(asyncApiEditorView, 802, 651));
         root.setTitle(createNewSpecification.specificationName());
     }
 
     public static void createNewSpecificationModal(Parent parent) throws IOException {
-        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("create-new-specification-view.fxml"));
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/views/create-new-specification-view.fxml"));
 
         var stage = new Stage();
         stage.setScene(new Scene(fxmlLoader.load()));

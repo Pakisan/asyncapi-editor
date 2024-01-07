@@ -1,5 +1,6 @@
 package com.github.pakisan.asyncapieditor.views.modals.createnewspecification;
 
+import atlantafx.base.theme.Styles;
 import com.github.pakisan.asyncapieditor.ViewsRouter;
 import com.github.pakisan.asyncapieditor.views.modals.createnewspecification.dto.CreateNewSpecification;
 import com.github.pakisan.asyncapieditor.views.modals.createnewspecification.dto.SpecificationTemplate;
@@ -37,9 +38,32 @@ public class CreateNewSpecificationViewController {
 
     @FXML
     public void initialize() {
+        // TODO: remove mock
+        specificationName.setText("Test specification");
+        specificationName.textProperty().addListener(
+                (observable, oldValue, newValue) -> createButton.setDisable(newValue.isBlank())
+        );
+        specificationDescription.setText(
+                """
+                This service is in charge of processing user signups :rocket:
+                
+                It's easy to use:
+                - choose user
+                - authenticate
+                - receive incoming messages
+                """
+        );
+
         ObservableList<SpecificationVersion> specificationVersions = FXCollections.observableArrayList();
         specificationVersions.addAll(SpecificationVersion.values());
         specificationVersion.setItems(specificationVersions);
+
+        cancelButton.getStyleClass().addAll(Styles.BUTTON_OUTLINED, Styles.DANGER);
+
+        if (specificationName.getText().isBlank()) {
+            createButton.setDisable(true);
+        }
+        createButton.getStyleClass().addAll(Styles.BUTTON_OUTLINED, Styles.SUCCESS);
     }
 
     @FXML
