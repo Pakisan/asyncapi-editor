@@ -1,10 +1,12 @@
 package com.github.pakisan.asyncapieditor.v3.views.editor;
 
 import com.asyncapi.v3._0_0.model.AsyncAPI;
+import com.asyncapi.v3._0_0.model.info.License;
 import com.github.pakisan.asyncapieditor.ViewsRouter;
 import com.github.pakisan.asyncapieditor.v3.SpecificationStructureProvider;
 import com.github.pakisan.asyncapieditor.v3.components.ContactComponentController;
 import com.github.pakisan.asyncapieditor.v3.components.InfoComponentController;
+import com.github.pakisan.asyncapieditor.v3.components.LicenseComponentController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -66,7 +68,7 @@ public class AsyncApiEditorViewController {
                     } else if ("Contact".equalsIgnoreCase(((Text) target).getText())) {
                         renderContactEditor();
                     } else if ("License".equalsIgnoreCase(((Text) target).getText())) {
-                        loadEditor("/ui/v3/components/license-component.fxml");
+                        renderLicenseEditor();
                     } else if ("Tags".equalsIgnoreCase(((Text) target).getText())) {
                         loadEditor("/ui/v3/components/tags-component.fxml");
                     }
@@ -95,6 +97,20 @@ public class AsyncApiEditorViewController {
 
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(infoComponent);
+    }
+
+    private void renderLicenseEditor() throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/license-component.fxml"));
+        Parent licenseComponent = fxmlLoader.load();
+        LicenseComponentController contactComponentController = fxmlLoader.getController();
+
+        if (specification.getInfo().getLicense() == null) {
+            specification.getInfo().setLicense(new License());
+        }
+        contactComponentController.bindLicense(specification.getInfo().getLicense());
+
+        specificationEditor.getChildren().clear();
+        specificationEditor.getChildren().add(licenseComponent);
     }
 
     private void loadEditor(String editorView) throws IOException {

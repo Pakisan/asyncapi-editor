@@ -7,7 +7,9 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-      prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+      prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.github.pakisan.asyncapieditor.v3.components.LicenseComponentController"
+>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
    </padding>
@@ -17,7 +19,7 @@
             <Font size="15.0"/>
          </font>
       </Label>
-      <TextField/>
+      <TextField fx:id="name" promptText="Licence name"/>
    </VBox>
    <VBox spacing="5.0">
       <VBox.margin>
@@ -28,6 +30,6 @@
             <Font size="15.0"/>
          </font>
       </Label>
-      <TextField/>
+      <TextField fx:id="url" promptText="Licence url"/>
    </VBox>
 </VBox>
