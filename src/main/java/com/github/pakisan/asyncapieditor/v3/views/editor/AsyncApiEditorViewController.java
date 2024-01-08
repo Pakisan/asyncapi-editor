@@ -14,9 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -58,26 +56,24 @@ public class AsyncApiEditorViewController {
         specification.getChildren().add(specificationOperations);
         specification.getChildren().add(specificationComponents);
         specificationStructure.setRoot(specification);
-        specificationStructure.setOnMouseClicked(event -> {
-            if (!event.getButton().equals(MouseButton.PRIMARY)) {
-                return;
-            }
-
-            var target = event.getTarget();
-            if (target instanceof Text) {
-                try {
-                    if ("Info".equalsIgnoreCase(((Text) target).getText())) {
-                        renderInfoEditor();
-                    } else if ("Contact".equalsIgnoreCase(((Text) target).getText())) {
-                        renderContactEditor();
-                    } else if ("License".equalsIgnoreCase(((Text) target).getText())) {
-                        renderLicenseEditor();
-                    } else if ("Tags".equalsIgnoreCase(((Text) target).getText())) {
-                        renderTagsEditor();
-                    }
-                } catch (Exception e) {
-                    throw new RuntimeException("View exception", e);
+        specificationStructure.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                if (newValue == null) {
+                    return;
                 }
+
+                var treeItem = newValue.getValue();
+                if ("Info".equalsIgnoreCase(treeItem)) {
+                    renderInfoEditor();
+                } else if ("Contact".equalsIgnoreCase(treeItem)) {
+                    renderContactEditor();
+                } else if ("License".equalsIgnoreCase(treeItem)) {
+                    renderLicenseEditor();
+                } else if ("Tags".equalsIgnoreCase(treeItem)) {
+                    renderTagsEditor();
+                }
+            } catch (Exception e) {
+                throw new RuntimeException("View exception", e);
             }
         });
     }
