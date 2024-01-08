@@ -4,6 +4,8 @@ module com.github.pakisan.asyncapieditor {
     requires com.asyncapi;
     requires org.jetbrains.annotations;
     requires atlantafx.base;
+    requires org.kordamp.ikonli.javafx;
+    requires org.kordamp.ikonli.antdesignicons;
 
     opens com.github.pakisan.asyncapieditor to javafx.fxml;
     opens com.github.pakisan.asyncapieditor.views.modals.createnewspecification to javafx.fxml;

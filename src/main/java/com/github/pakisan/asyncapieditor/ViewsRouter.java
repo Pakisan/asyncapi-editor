@@ -1,6 +1,7 @@
 package com.github.pakisan.asyncapieditor;
 
 import com.asyncapi.v3._0_0.model.AsyncAPI;
+import com.asyncapi.v3._0_0.model.Tag;
 import com.asyncapi.v3._0_0.model.info.Info;
 import com.github.pakisan.asyncapieditor.v3.views.editor.AsyncApiEditorViewController;
 import com.github.pakisan.asyncapieditor.views.modals.createnewspecification.dto.CreateNewSpecification;
@@ -11,6 +12,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public final class ViewsRouter {
 
@@ -26,10 +28,18 @@ public final class ViewsRouter {
         AsyncApiEditorViewController asyncApiEditorViewController = fxmlLoader.getController();
 
         var asyncApi = new AsyncAPI();
+        var tags = new LinkedList<>();
+        tags.add(new Tag("asyncapi", null, null));
+        tags.add(new Tag("v1.0", null, null));
+        tags.add(new Tag("user accounts", null, null));
+        tags.add(new Tag("first tag", null, null));
+        tags.add(new Tag("second tag", null, null));
+        tags.add(new Tag("third tag", null, null));
         asyncApi.setInfo(
                 Info.builder()
                         .title(createNewSpecification.specificationName())
                         .description(createNewSpecification.specificationDescription())
+                        .tags(tags)
                         .build()
         );
         asyncApiEditorViewController.bindSpecification(asyncApi);

@@ -8,6 +8,7 @@ import com.github.pakisan.asyncapieditor.v3.SpecificationStructureProvider;
 import com.github.pakisan.asyncapieditor.v3.components.ContactComponentController;
 import com.github.pakisan.asyncapieditor.v3.components.InfoComponentController;
 import com.github.pakisan.asyncapieditor.v3.components.LicenseComponentController;
+import com.github.pakisan.asyncapieditor.v3.components.TagsComponentController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ import javafx.scene.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.LinkedList;
 
 public class AsyncApiEditorViewController {
 
@@ -71,7 +73,7 @@ public class AsyncApiEditorViewController {
                     } else if ("License".equalsIgnoreCase(((Text) target).getText())) {
                         renderLicenseEditor();
                     } else if ("Tags".equalsIgnoreCase(((Text) target).getText())) {
-                        loadEditor("/ui/v3/components/tags-component.fxml");
+                        renderTagsEditor();
                     }
                 } catch (Exception e) {
                     throw new RuntimeException("View exception", e);
@@ -118,10 +120,32 @@ public class AsyncApiEditorViewController {
         specificationEditor.getChildren().add(licenseComponent);
     }
 
-    private void loadEditor(String editorView) throws IOException {
-        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource(editorView));
+    private void renderTagsEditor() throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/tags-component.fxml"));
+        Parent tagsComponent = fxmlLoader.load();
+        TagsComponentController tagsComponentController = fxmlLoader.getController();
+
+        if (specification.getInfo().getLicense() == null) {
+            specification.getInfo().setLicense(new License());
+        }
+        if (specification.getInfo().getTags() == null) {
+            specification.getInfo().setTags(new LinkedList<>());
+        }
+        tagsComponentController.initialize(
+                specification.getInfo().getTags(),
+                specificationStructureProvider.getSpecificationInfoTags()
+        );
+
         specificationEditor.getChildren().clear();
-        specificationEditor.getChildren().add(fxmlLoader.load());
+        specificationEditor.getChildren().add(tagsComponent);
+        fitToEditorPane(tagsComponent);
+    }
+
+    private void fitToEditorPane(@NotNull Parent component) {
+        AnchorPane.setTopAnchor(component, 0.0);
+        AnchorPane.setBottomAnchor(component, 0.0);
+        AnchorPane.setLeftAnchor(component, 0.0);
+        AnchorPane.setRightAnchor(component, 0.0);
     }
 
 }
