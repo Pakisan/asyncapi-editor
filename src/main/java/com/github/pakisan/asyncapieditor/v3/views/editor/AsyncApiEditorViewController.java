@@ -90,11 +90,12 @@ public class AsyncApiEditorViewController {
 
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(infoComponent);
+        fitToEditorPane(infoComponent);
     }
 
     private void renderContactEditor() throws IOException {
         var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/contact-component.fxml"));
-        Parent infoComponent = fxmlLoader.load();
+        Parent contactComponent = fxmlLoader.load();
         ContactComponentController contactComponentController = fxmlLoader.getController();
 
         if (specification.getInfo().getContact() == null) {
@@ -103,21 +104,23 @@ public class AsyncApiEditorViewController {
         contactComponentController.bindContact(specification.getInfo().getContact());
 
         specificationEditor.getChildren().clear();
-        specificationEditor.getChildren().add(infoComponent);
+        specificationEditor.getChildren().add(contactComponent);
+        fitToEditorPane(contactComponent);
     }
 
     private void renderLicenseEditor() throws IOException {
         var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/license-component.fxml"));
         Parent licenseComponent = fxmlLoader.load();
-        LicenseComponentController contactComponentController = fxmlLoader.getController();
+        LicenseComponentController licenseComponentController = fxmlLoader.getController();
 
         if (specification.getInfo().getLicense() == null) {
             specification.getInfo().setLicense(new License());
         }
-        contactComponentController.bindLicense(specification.getInfo().getLicense());
+        licenseComponentController.bindLicense(specification.getInfo().getLicense());
 
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(licenseComponent);
+        fitToEditorPane(licenseComponent);
     }
 
     private void renderTagsEditor() throws IOException {
