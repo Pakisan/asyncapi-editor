@@ -2,6 +2,7 @@ package com.github.pakisan.asyncapieditor.v3;
 
 import com.asyncapi.v3._0_0.model.AsyncAPI;
 import com.asyncapi.v3._0_0.model.Tag;
+import com.asyncapi.v3._0_0.model.server.Server;
 import com.github.pakisan.asyncapieditor.v3.components.TagTreeItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,7 +51,23 @@ public class SpecificationStructureProvider {
     }
 
     public TreeItem<String> getSpecificationServers() {
-        return new TreeItem<>("Servers", new FontIcon(AntDesignIconsOutlined.CLUSTER));
+        var specificationServers = new TreeItem<>("Servers", new FontIcon(AntDesignIconsOutlined.CLUSTER));
+        if (specification.getServers() != null) {
+            specification.getServers().keySet().forEach(serverName -> {
+                var server = specification.getServers().getOrDefault(serverName, null);
+                if (server instanceof Server) {
+                    var serverTreeItem = new TreeItem<>(serverName, new FontIcon(AntDesignIconsOutlined.CLOUD_SYNC));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Tags", new FontIcon(AntDesignIconsOutlined.TAGS)));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Bindings", new FontIcon(AntDesignIconsOutlined.SUBNODE)));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Security", new FontIcon(AntDesignIconsOutlined.SAFETY)));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Variables", new FontIcon(AntDesignIconsOutlined.FORM)));
+
+                    specificationServers.getChildren().add(serverTreeItem);
+                }
+            });
+        }
+
+        return specificationServers;
     }
 
     public TreeItem<String> getSpecificationChannels() {
