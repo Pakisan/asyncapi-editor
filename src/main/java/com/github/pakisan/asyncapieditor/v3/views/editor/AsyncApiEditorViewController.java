@@ -5,10 +5,7 @@ import com.asyncapi.v3._0_0.model.info.Contact;
 import com.asyncapi.v3._0_0.model.info.License;
 import com.github.pakisan.asyncapieditor.ViewsRouter;
 import com.github.pakisan.asyncapieditor.v3.SpecificationStructureProvider;
-import com.github.pakisan.asyncapieditor.v3.components.ContactComponentController;
-import com.github.pakisan.asyncapieditor.v3.components.InfoComponentController;
-import com.github.pakisan.asyncapieditor.v3.components.LicenseComponentController;
-import com.github.pakisan.asyncapieditor.v3.components.TagsComponentController;
+import com.github.pakisan.asyncapieditor.v3.components.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -71,6 +68,8 @@ public class AsyncApiEditorViewController {
                     renderLicenseEditor();
                 } else if ("Tags".equalsIgnoreCase(treeItem)) {
                     renderTagsEditor();
+                } else if ("Servers".equalsIgnoreCase(treeItem)) {
+                    renderServersEditor();
                 }
             } catch (Exception e) {
                 throw new RuntimeException("View exception", e);
@@ -138,6 +137,20 @@ public class AsyncApiEditorViewController {
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(tagsComponent);
         fitToEditorPane(tagsComponent);
+    }
+
+    private void renderServersEditor() throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/servers-component.fxml"));
+        Parent component = fxmlLoader.load();
+        ServersComponentController componentController = fxmlLoader.getController();
+
+        if (specification.getServers() == null) {
+            specification.getInfo().setLicense(new License());
+        }
+
+        specificationEditor.getChildren().clear();
+        specificationEditor.getChildren().add(component);
+        fitToEditorPane(component);
     }
 
     private void fitToEditorPane(@NotNull Parent component) {

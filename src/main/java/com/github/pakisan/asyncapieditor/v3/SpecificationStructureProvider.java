@@ -50,7 +50,7 @@ public class SpecificationStructureProvider {
     }
 
     public TreeItem<String> getSpecificationServers() {
-        return new TreeItem<>("Servers");
+        return new TreeItem<>("Servers", new FontIcon(AntDesignIconsOutlined.CLUSTER));
     }
 
     public TreeItem<String> getSpecificationChannels() {
