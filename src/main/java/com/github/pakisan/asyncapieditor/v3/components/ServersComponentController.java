@@ -50,18 +50,26 @@ public class ServersComponentController {
         protocol.getSelectionModel().select(3);
         var protocolVariants = new LinkedList<>(List.of(
                 "amqp",
-                "amqps",
+                "amqp",
+                "amqp1",
+                "amqps1",
+                "anypointmq",
+                "googlepubsub",
                 "http",
-                "https",
+                "ibmmq",
                 "jms",
                 "kafka",
-                "kafka-secure",
+                "mercure",
                 "mqtt",
-                "secure-mqtt",
+                "mqtt5",
+                "nats",
+                "pulsar",
+                "redis",
+                "sns",
+                "solace",
+                "sqs",
                 "stomp",
-                "stomps",
-                "ws",
-                "wss"
+                "ws"
         ));
         protocol.setItems(FXCollections.observableList(protocolVariants));
 
