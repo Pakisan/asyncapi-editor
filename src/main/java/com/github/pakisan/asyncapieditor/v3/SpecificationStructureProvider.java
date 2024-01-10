@@ -23,7 +23,7 @@ public class SpecificationStructureProvider {
     }
 
     public TreeItem<String> getSpecificationInfo() {
-        var specificationInfo       = new TreeItem<>("Info");
+        var specificationInfo       = new TreeItem<>("Info", new FontIcon(AntDesignIconsOutlined.INFO_CIRCLE));
         specificationInfo.getChildren().add(new TreeItem<>("Contact"));
         specificationInfo.getChildren().add(new TreeItem<>("License"));
         specificationInfo.getChildren().add(specificationInfoTags());
