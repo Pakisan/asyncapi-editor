@@ -3,6 +3,7 @@ package com.github.pakisan.asyncapieditor.v3;
 import com.asyncapi.v3._0_0.model.AsyncAPI;
 import com.asyncapi.v3._0_0.model.Tag;
 import com.asyncapi.v3._0_0.model.server.Server;
+import com.github.pakisan.asyncapieditor.icons.IconsLoader;
 import com.github.pakisan.asyncapieditor.v3.components.TagTreeItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -56,7 +57,7 @@ public class SpecificationStructureProvider {
             specification.getServers().keySet().forEach(serverName -> {
                 var server = specification.getServers().getOrDefault(serverName, null);
                 if (server instanceof Server) {
-                    var serverTreeItem = new TreeItem<>(serverName, new FontIcon(AntDesignIconsOutlined.CLOUD_SYNC));
+                    var serverTreeItem = new TreeItem<>(serverName, IconsLoader.getServerIcon(((Server) server).getProtocol()));
                     serverTreeItem.getChildren().add(new TreeItem<>("Tags", new FontIcon(AntDesignIconsOutlined.TAGS)));
                     serverTreeItem.getChildren().add(new TreeItem<>("Bindings", new FontIcon(AntDesignIconsOutlined.SUBNODE)));
                     serverTreeItem.getChildren().add(new TreeItem<>("Security", new FontIcon(AntDesignIconsOutlined.SAFETY)));
