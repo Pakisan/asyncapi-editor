@@ -1,10 +1,33 @@
 package com.github.pakisan.asyncapieditor.icons;
 
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.jetbrains.annotations.NotNull;
+import org.kordamp.ikonli.antdesignicons.AntDesignIconsOutlined;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class IconsLoader {
+
+    @NotNull
+    public static Node getInfoIcon() {
+        return new FontIcon(AntDesignIconsOutlined.INFO_CIRCLE);
+    }
+
+    @NotNull
+    public static Node getTagsIcon() {
+        return new FontIcon(AntDesignIconsOutlined.TAGS);
+    }
+
+    @NotNull
+    public static Node getTagIcon() {
+        return new FontIcon(AntDesignIconsOutlined.TAG);
+    }
+
+    @NotNull
+    public static Node getServersIcon() {
+        return new FontIcon(AntDesignIconsOutlined.CLUSTER);
+    }
 
     @NotNull
     public static ImageView getServerIcon(@NotNull String serverProtocol) {
@@ -67,6 +90,21 @@ public class IconsLoader {
         }
 
         return icon;
+    }
+
+    @NotNull
+    public static Node getServerBindingsIcon() {
+        return new FontIcon(AntDesignIconsOutlined.SUBNODE);
+    }
+
+    @NotNull
+    public static Node getServerSecurityIcon() {
+        return new FontIcon(AntDesignIconsOutlined.SAFETY);
+    }
+
+    @NotNull
+    public static Node getServerVariablesIcon() {
+        return new FontIcon(AntDesignIconsOutlined.FORM);
     }
 
     @NotNull

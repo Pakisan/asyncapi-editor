@@ -9,8 +9,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 import org.jetbrains.annotations.NotNull;
-import org.kordamp.ikonli.antdesignicons.AntDesignIconsOutlined;
-import org.kordamp.ikonli.javafx.FontIcon;
 
 public class SpecificationStructureProvider {
 
@@ -25,7 +23,7 @@ public class SpecificationStructureProvider {
     }
 
     public TreeItem<String> getSpecificationInfo() {
-        var specificationInfo       = new TreeItem<>("Info", new FontIcon(AntDesignIconsOutlined.INFO_CIRCLE));
+        var specificationInfo       = new TreeItem<>("Info", IconsLoader.getInfoIcon());
         specificationInfo.getChildren().add(new TreeItem<>("Contact"));
         specificationInfo.getChildren().add(new TreeItem<>("License"));
         specificationInfo.getChildren().add(specificationInfoTags());
@@ -34,7 +32,7 @@ public class SpecificationStructureProvider {
     }
 
     private TreeItem<String> specificationInfoTags() {
-        var specificationInfoTags   = new TreeItem<>("Tags", new FontIcon(AntDesignIconsOutlined.TAGS));
+        var specificationInfoTags   = new TreeItem<>("Tags", IconsLoader.getTagsIcon());
         if (specification.getInfo().getTags() != null) {
             specification.getInfo().getTags().forEach(tag -> {
                 if (tag instanceof Tag) {
@@ -52,16 +50,16 @@ public class SpecificationStructureProvider {
     }
 
     public TreeItem<String> getSpecificationServers() {
-        var specificationServers = new TreeItem<>("Servers", new FontIcon(AntDesignIconsOutlined.CLUSTER));
+        var specificationServers = new TreeItem<>("Servers", IconsLoader.getServersIcon());
         if (specification.getServers() != null) {
             specification.getServers().keySet().forEach(serverName -> {
                 var server = specification.getServers().getOrDefault(serverName, null);
                 if (server instanceof Server) {
                     var serverTreeItem = new TreeItem<>(serverName, IconsLoader.getServerIcon(((Server) server).getProtocol()));
-                    serverTreeItem.getChildren().add(new TreeItem<>("Tags", new FontIcon(AntDesignIconsOutlined.TAGS)));
-                    serverTreeItem.getChildren().add(new TreeItem<>("Bindings", new FontIcon(AntDesignIconsOutlined.SUBNODE)));
-                    serverTreeItem.getChildren().add(new TreeItem<>("Security", new FontIcon(AntDesignIconsOutlined.SAFETY)));
-                    serverTreeItem.getChildren().add(new TreeItem<>("Variables", new FontIcon(AntDesignIconsOutlined.FORM)));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Tags", IconsLoader.getTagsIcon()));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Bindings", IconsLoader.getServerBindingsIcon()));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Security", IconsLoader.getServerSecurityIcon()));
+                    serverTreeItem.getChildren().add(new TreeItem<>("Variables", IconsLoader.getServerVariablesIcon()));
 
                     specificationServers.getChildren().add(serverTreeItem);
                 }
