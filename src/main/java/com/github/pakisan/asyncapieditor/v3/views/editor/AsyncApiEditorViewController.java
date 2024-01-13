@@ -70,6 +70,8 @@ public class AsyncApiEditorViewController {
                     renderTagsEditor();
                 } else if ("Servers".equalsIgnoreCase(treeItem)) {
                     renderServersEditor();
+                } else {
+                    renderNoView();
                 }
             } catch (Exception e) {
                 throw new RuntimeException("View exception", e);
@@ -147,6 +149,15 @@ public class AsyncApiEditorViewController {
         if (specification.getServers() == null) {
             specification.getInfo().setLicense(new License());
         }
+
+        specificationEditor.getChildren().clear();
+        specificationEditor.getChildren().add(component);
+        fitToEditorPane(component);
+    }
+
+    public void renderNoView() throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/no-view.fxml"));
+        Parent component = fxmlLoader.load();
 
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(component);
