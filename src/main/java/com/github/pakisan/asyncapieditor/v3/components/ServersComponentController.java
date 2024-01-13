@@ -50,7 +50,7 @@ public class ServersComponentController {
         protocol.getSelectionModel().select(3);
         var protocolVariants = new LinkedList<>(List.of(
                 "amqp",
-                "amqp",
+                "amqps",
                 "amqp1",
                 "amqps1",
                 "anypointmq",
