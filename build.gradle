@@ -38,7 +38,7 @@ javafx {
 }
 
 dependencies {
-    implementation("com.asyncapi:asyncapi-core:1.0.0-EAP-3")
+    implementation("com.asyncapi:asyncapi-core:1.0.0-EAP-3-SNAPSHOT")
     implementation("org.jetbrains:annotations:24.0.1")
     implementation("io.github.mkpaz:atlantafx-base:2.0.1")
     implementation("org.kordamp.ikonli:ikonli-antdesignicons-pack:12.3.1")
