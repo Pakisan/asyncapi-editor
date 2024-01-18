@@ -1,5 +1,6 @@
 package com.github.pakisan.asyncapieditor;
 
+import atlantafx.base.theme.CupertinoDark;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ public class AsyncApiEditor extends Application {
     }
 
     public static void main(String[] args) {
-        Application.setUserAgentStylesheet("cupertino-dark.css");
+        Application.setUserAgentStylesheet(new CupertinoDark().getUserAgentStylesheet());
         launch();
     }
 
