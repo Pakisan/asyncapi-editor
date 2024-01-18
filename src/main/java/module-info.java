@@ -12,6 +12,7 @@ module com.github.pakisan.asyncapieditor {
     opens com.github.pakisan.asyncapieditor.views.welcome to javafx.fxml;
     opens com.github.pakisan.asyncapieditor.v3.views.editor to javafx.fxml;
     opens com.github.pakisan.asyncapieditor.v3.components to javafx.fxml;
+    opens com.github.pakisan.asyncapieditor.v3.components.servers to javafx.fxml;
     opens com.github.pakisan.asyncapieditor.v3.components.servers.bindings to javafx.fxml;
 
     exports com.github.pakisan.asyncapieditor;

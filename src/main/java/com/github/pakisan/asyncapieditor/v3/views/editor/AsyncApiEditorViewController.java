@@ -6,6 +6,7 @@ import com.asyncapi.v3._0_0.model.info.License;
 import com.github.pakisan.asyncapieditor.ViewsRouter;
 import com.github.pakisan.asyncapieditor.v3.SpecificationStructureProvider;
 import com.github.pakisan.asyncapieditor.v3.components.*;
+import com.github.pakisan.asyncapieditor.v3.components.servers.ServerBindingsController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -70,6 +71,8 @@ public class AsyncApiEditorViewController {
                     renderTagsEditor();
                 } else if ("Servers".equalsIgnoreCase(treeItem)) {
                     renderServersEditor();
+                } else if ("Bindings".equalsIgnoreCase(treeItem)) {
+                    renderServerBindingsEditor();
                 } else {
                     renderNoView();
                 }
@@ -149,6 +152,16 @@ public class AsyncApiEditorViewController {
         if (specification.getServers() == null) {
             specification.getInfo().setLicense(new License());
         }
+
+        specificationEditor.getChildren().clear();
+        specificationEditor.getChildren().add(component);
+        fitToEditorPane(component);
+    }
+
+    private void renderServerBindingsEditor() throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/servers/server-bindings.fxml"));
+        Parent component = fxmlLoader.load();
+        ServerBindingsController serverBindingsController = fxmlLoader.getController();
 
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(component);
