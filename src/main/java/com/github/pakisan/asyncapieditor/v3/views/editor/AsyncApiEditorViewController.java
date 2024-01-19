@@ -7,6 +7,7 @@ import com.github.pakisan.asyncapieditor.ViewsRouter;
 import com.github.pakisan.asyncapieditor.v3.SpecificationStructureProvider;
 import com.github.pakisan.asyncapieditor.v3.components.*;
 import com.github.pakisan.asyncapieditor.v3.components.servers.ServerBindingsController;
+import com.github.pakisan.asyncapieditor.v3.components.servers.ServerSecuritiesController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -73,6 +74,8 @@ public class AsyncApiEditorViewController {
                     renderServersEditor();
                 } else if ("Bindings".equalsIgnoreCase(treeItem)) {
                     renderServerBindingsEditor();
+                } else if ("Security".equalsIgnoreCase(treeItem)) {
+                    renderServerSecuritiesEditor();
                 } else {
                     renderNoView();
                 }
@@ -162,6 +165,16 @@ public class AsyncApiEditorViewController {
         var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/servers/server-bindings.fxml"));
         Parent component = fxmlLoader.load();
         ServerBindingsController serverBindingsController = fxmlLoader.getController();
+
+        specificationEditor.getChildren().clear();
+        specificationEditor.getChildren().add(component);
+        fitToEditorPane(component);
+    }
+
+    private void renderServerSecuritiesEditor() throws IOException {
+        var fxmlLoader = new FXMLLoader(ViewsRouter.class.getResource("/ui/v3/components/servers/server-securities.fxml"));
+        Parent component = fxmlLoader.load();
+        ServerSecuritiesController serverSecuritiesController = fxmlLoader.getController();
 
         specificationEditor.getChildren().clear();
         specificationEditor.getChildren().add(component);
