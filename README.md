@@ -2,6 +2,11 @@
 
 ## Launch locally
 
+Prerequisites:
+
+- [SDKMAN!](https://sdkman.io) to install required java
+
+
 Prepare your environment
 ```shell
 sdk env install
