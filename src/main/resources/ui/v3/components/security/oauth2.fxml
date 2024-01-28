@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import atlantafx.base.layout.InputGroup?>
+
+<AnchorPane prefHeight="598.0" prefWidth="677.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.pakisan.asyncapieditor.v3.components.security.OAuth2SecuritySchemeController">
+   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="463.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <VBox prefWidth="100.0" spacing="5.0">
+            <TextField fx:id="description" promptText="A short description for security scheme" />
+            <Label fx:id="descriptionDescription" textFill="#63676b" wrapText="true" />
+         </VBox>
+         <VBox prefWidth="100.0" spacing="5.0" minHeight="200">
+            <InputGroup VBox.vgrow="NEVER">
+               <TextField fx:id="scope" promptText="Scope"/>
+               <Button fx:id="addScopeButton" onAction="#onAddScopeButtonClick" mnemonicParsing="false" text="Add"/>
+            </InputGroup>
+            <ListView fx:id="scopes"/>
+            <Label fx:id="scopesDescription" textFill="#63676b" wrapText="true" />
+         </VBox>
+         <TitledPane animated="false" collapsible="false" text="Implicit flow"
+                     VBox.vgrow="ALWAYS">
+            <AnchorPane prefHeight="180.0" prefWidth="200.0">
+               <VBox layoutX="-4.5" prefHeight="200.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0"
+                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" spacing="30.0">
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <TextField fx:id="implicitAuthorizationUrl" promptText="The authorization URL to be used for this flow"/>
+                     <Label fx:id="implicitAuthorizationUrlDescription" textFill="#63676b" wrapText="true"/>
+                  </VBox>
+               </VBox>
+            </AnchorPane>
+         </TitledPane>
+         <TitledPane animated="false" collapsible="false" text="Password flow"
+                     VBox.vgrow="ALWAYS">
+            <AnchorPane prefHeight="180.0" prefWidth="200.0">
+               <VBox layoutX="-4.5" prefHeight="200.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0"
+                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" spacing="30.0">
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <TextField fx:id="passwordTokenUrl" promptText="The token URL to be used for this flow"/>
+                     <Label fx:id="passwordTokenUrlDescription" textFill="#63676b" wrapText="true"/>
+                  </VBox>
+               </VBox>
+            </AnchorPane>
+         </TitledPane>
+         <TitledPane animated="false" collapsible="false" text="Client credentials flow"
+                     VBox.vgrow="ALWAYS">
+            <AnchorPane prefHeight="180.0" prefWidth="200.0">
+               <VBox layoutX="-4.5" prefHeight="200.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0"
+                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" spacing="30.0">
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <TextField fx:id="clientCredentialsTokenUrl" promptText="The token URL to be used for this flow"/>
+                     <Label fx:id="clientCredentialsTokenUrlDescription" textFill="#63676b" wrapText="true"/>
+                  </VBox>
+               </VBox>
+            </AnchorPane>
+         </TitledPane>
+         <TitledPane animated="false" collapsible="false" text="Authorization code flow"
+                     VBox.vgrow="ALWAYS">
+            <AnchorPane prefHeight="180.0" prefWidth="200.0">
+               <VBox layoutX="-4.5" prefHeight="200.0" prefWidth="658.0" AnchorPane.bottomAnchor="0.0"
+                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" spacing="30.0">
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <TextField fx:id="authorizationCodeAuthorizationUrl" promptText="The authorization URL to be used for this flow"/>
+                     <Label fx:id="authorizationCodeAuthorizationUrlDescription" textFill="#63676b" wrapText="true"/>
+                  </VBox>
+                  <VBox prefWidth="100.0" spacing="5.0">
+                     <TextField fx:id="authorizationCodeTokenUrl" promptText="The token URL to be used for this flow"/>
+                     <Label fx:id="authorizationCodeTokenUrlDescription" textFill="#63676b" wrapText="true"/>
+                  </VBox>
+               </VBox>
+            </AnchorPane>
+         </TitledPane>
+      </VBox>
+   </ScrollPane>
+</AnchorPane>
